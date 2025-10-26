@@ -10,6 +10,7 @@ from .common import *
 TAIGA_SITES_SCHEME = os.getenv("TAIGA_SITES_SCHEME", "http")
 TAIGA_SITES_DOMAIN = os.getenv("TAIGA_SITES_DOMAIN", "localhost")
 STATIC_URL = "{scheme}://{domain}/static/".format(scheme=TAIGA_SITES_SCHEME, domain=TAIGA_SITES_DOMAIN)
+MEDIA_URL = "{scheme}://{domain}/media/".format(scheme=TAIGA_SITES_SCHEME, domain=TAIGA_SITES_DOMAIN)
 
 # Override the DATABASES dictionary to add the required SSL mode.
 # The other database settings (USER, PASSWORD, HOST, etc.) are already
