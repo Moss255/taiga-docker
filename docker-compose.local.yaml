@@ -1,40 +1,40 @@
 version: "3.5"
 
 x-environment:
-  &default-back-environment
-  # These environment variables will be used by taiga-back and taiga-async.
-  # Database settings
-  POSTGRES_DB: "taiga"
-  POSTGRES_USER: "${POSTGRES_USER}"
-  POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-  POSTGRES_HOST: "taiga-db"
-  # Taiga settings
-  TAIGA_SECRET_KEY: "${SECRET_KEY}"
-  TAIGA_SITES_SCHEME: "${TAIGA_SCHEME}"
-  TAIGA_SITES_DOMAIN: "${TAIGA_DOMAIN}"
-  TAIGA_SUBPATH: "${SUBPATH}"
-  # Email settings.
-  EMAIL_BACKEND: "django.core.mail.backends.${EMAIL_BACKEND}.EmailBackend"
-  DEFAULT_FROM_EMAIL: "${EMAIL_DEFAULT_FROM}"
-  EMAIL_USE_TLS: "${EMAIL_USE_TLS}"
-  EMAIL_USE_SSL: "${EMAIL_USE_SSL}"
-  EMAIL_HOST: "${EMAIL_HOST}"
-  EMAIL_PORT: "${EMAIL_PORT}"
-  EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
-  EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
-  # Rabbitmq settings
-  RABBITMQ_USER: "${RABBITMQ_USER}"
-  RABBITMQ_PASS: "${RABBITMQ_PASS}"
-  # Telemetry settings
-  ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
-  # ...your customizations go here
+  default: &default-back-environment
+    # These environment variables will be used by taiga-back and taiga-async.
+    # Database settings
+    POSTGRES_DB: "taiga"
+    POSTGRES_USER: "${POSTGRES_USER}"
+    POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    POSTGRES_HOST: "taiga-db"
+    # Taiga settings
+    TAIGA_SECRET_KEY: "${SECRET_KEY}"
+    TAIGA_SITES_SCHEME: "${TAIGA_SCHEME}"
+    TAIGA_SITES_DOMAIN: "${TAIGA_DOMAIN}"
+    TAIGA_SUBPATH: "${SUBPATH}"
+    # Email settings.
+    EMAIL_BACKEND: "django.core.mail.backends.${EMAIL_BACKEND}.EmailBackend"
+    DEFAULT_FROM_EMAIL: "${EMAIL_DEFAULT_FROM}"
+    EMAIL_USE_TLS: "${EMAIL_USE_TLS}"
+    EMAIL_USE_SSL: "${EMAIL_USE_SSL}"
+    EMAIL_HOST: "${EMAIL_HOST}"
+    EMAIL_PORT: "${EMAIL_PORT}"
+    EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
+    EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
+    # Rabbitmq settings
+    RABBITMQ_USER: "${RABBITMQ_USER}"
+    RABBITMQ_PASS: "${RABBITMQ_PASS}"
+    # Telemetry settings
+    ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
+    # ...your customizations go here
 
 x-volumes:
-  &default-back-volumes
-  # These volumens will be used by taiga-back and taiga-async.
-  - taiga-static-data:/taiga-back/static
-  - taiga-media-data:/taiga-back/media
-  # - ./config.py:/taiga-back/settings/config.py
+  default: &default-back-volumes
+    # These volumens will be used by taiga-back and taiga-async.
+    - taiga-static-data:/taiga-back/static
+    - taiga-media-data:/taiga-back/media
+    # - ./config.py:/taiga-back/settings/config.py
 
 services:
   taiga-db:
