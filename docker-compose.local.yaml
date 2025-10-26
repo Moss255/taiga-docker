@@ -63,9 +63,7 @@ services:
     depends_on:
       taiga-db:
         condition: service_healthy
-      taiga-events-rabbitmq:
-        condition: service_started
-      taiga-async-rabbitmq:
+      taiga-rabbitmq:
         condition: service_started
 
   taiga-async:
@@ -75,26 +73,15 @@ services:
     volumes: *default-back-volumes
     networks:
       - taiga
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
     depends_on:
       taiga-db:
         condition: service_healthy
-      taiga-events-rabbitmq:
+      taiga-rabbitmq:
         condition: service_started
-      taiga-async-rabbitmq:
-        condition: service_started
-
-  taiga-async-rabbitmq:
-    image: rabbitmq:3.8-management-alpine
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "${RABBITMQ_ERLANG_COOKIE}"
-      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
-      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
-      RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_VHOST}"
-    hostname: "taiga-async-rabbitmq"
-    volumes:
-      - taiga-async-rabbitmq-data:/var/lib/rabbitmq
-    networks:
-      - taiga
 
   taiga-front:
     image: taigaio/taiga-front:latest
@@ -117,19 +104,19 @@ services:
     networks:
       - taiga
     depends_on:
-      taiga-events-rabbitmq:
+      taiga-rabbitmq:
         condition: service_started
 
-  taiga-events-rabbitmq:
+  taiga-rabbitmq:
     image: rabbitmq:3.8-management-alpine
     environment:
       RABBITMQ_ERLANG_COOKIE: "${RABBITMQ_ERLANG_COOKIE}"
       RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
       RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
       RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_VHOST}"
-    hostname: "taiga-events-rabbitmq"
+    hostname: "taiga-rabbitmq"
     volumes:
-      - taiga-events-rabbitmq-data:/var/lib/rabbitmq
+      - taiga-rabbitmq-data:/var/lib/rabbitmq
     networks:
       - taiga
 
@@ -160,8 +147,7 @@ volumes:
   taiga-static-data:
   taiga-media-data:
   taiga-db-data:
-  taiga-async-rabbitmq-data:
-  taiga-events-rabbitmq-data:
+  taiga-rabbitmq-data:
 
 networks:
   taiga:

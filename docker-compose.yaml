@@ -54,6 +54,10 @@ services:
     volumes: *default-back-volumes
     networks:
       - taiga
+    ulimits:
+      nofile:
+        soft: 100000
+        hard: 100000
     depends_on:
       taiga-rabbitmq:
         condition: service_started
