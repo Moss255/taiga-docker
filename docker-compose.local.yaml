@@ -49,6 +49,8 @@ services:
       timeout: 15s
       retries: 5
       start_period: 3s
+    mem_reservation: 512m
+    mem_limit: 1g
     volumes:
       - taiga-db-data:/var/lib/postgresql/data
     networks:
@@ -58,6 +60,8 @@ services:
     image: taigaio/taiga-back:latest
     environment: *default-back-environment
     volumes: *default-back-volumes
+    mem_reservation: 256m
+    mem_limit: 768m
     networks:
       - taiga
     depends_on:
@@ -71,6 +75,8 @@ services:
     entrypoint: ["/taiga-back/docker/async_entrypoint.sh"]
     environment: *default-back-environment
     volumes: *default-back-volumes
+    mem_reservation: 256m
+    mem_limit: 768m
     networks:
       - taiga
     ulimits:
@@ -114,6 +120,7 @@ services:
       RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
       RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
       RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_VHOST}"
+    mem_limit: 512m
     hostname: "taiga-rabbitmq"
     volumes:
       - taiga-rabbitmq-data:/var/lib/rabbitmq
