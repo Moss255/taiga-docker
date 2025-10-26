@@ -93,6 +93,7 @@ services:
       RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
       RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
       RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_VHOST}"
+    mem_limit: 512m
     hostname: "taiga-rabbitmq"
     volumes:
       - taiga-rabbitmq-data:/var/lib/rabbitmq
