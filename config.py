@@ -1,6 +1,16 @@
 import os
 from .common import *
 
+#######################################################################
+# Site URL configuration
+#
+# These settings are used to build the full URLs for static files,
+# the API, and other parts of the application.
+#######################################################################
+TAIGA_SITES_SCHEME = os.getenv("TAIGA_SITES_SCHEME", "http")
+TAIGA_SITES_DOMAIN = os.getenv("TAIGA_SITES_DOMAIN", "localhost")
+STATIC_URL = "{scheme}://{domain}/static/".format(scheme=TAIGA_SITES_SCHEME, domain=TAIGA_SITES_DOMAIN)
+
 # Override the DATABASES dictionary to add the required SSL mode.
 # The other database settings (USER, PASSWORD, HOST, etc.) are already
 # loaded from environment variables by the default `common.py` settings.
