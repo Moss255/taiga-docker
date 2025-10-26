@@ -1,4 +1,7 @@
 import os
+from .common import *
+
+#######################################################################
 
 # Read database settings from environment variables
 POSTGRES_DB = os.getenv("POSTGRES_DB")
@@ -6,6 +9,8 @@ POSTGRES_USER = os.getenv("POSTGRES_USER")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", 5432)
+
+#######################################################################
 
 # Define the database connection, adding the required SSL mode
 DATABASES = {
@@ -21,5 +26,7 @@ DATABASES = {
         },
     }
 }
+
+#######################################################################
 
 # You can leave the rest of the file empty unless you need other advanced settings.
