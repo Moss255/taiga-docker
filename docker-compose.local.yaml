@@ -37,7 +37,7 @@ x-volumes:
     # These volumens will be used by taiga-back and taiga-async.
     - taiga-static-data:/taiga-back/static
     - taiga-media-data:/taiga-back/media
-    # - ./config.py:/taiga-back/settings/config.py
+    - ./config.py:/taiga-back/settings/config.py
 
 services:
   taiga-db:
