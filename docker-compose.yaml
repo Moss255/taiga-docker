@@ -86,6 +86,8 @@ services:
   taiga-rabbitmq:
     image: rabbitmq:3.13-management-alpine
     environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASS}"
       RABBITMQ_ERLANG_COOKIE: "${RABBITMQ_ERLANG_COOKIE}"
     mem_limit: 512m
     hostname: "taiga-rabbitmq"
