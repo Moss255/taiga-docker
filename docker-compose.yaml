@@ -27,7 +27,6 @@ x-environment:
     RABBITMQ_USER: "${RABBITMQ_USER}"
     RABBITMQ_PASS: "${RABBITMQ_PASS}"
     RABBITMQ_HOST: "taiga-rabbitmq"
-    EVENTS_PUSH_BACKEND_URL: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASS}@taiga-rabbitmq:5672/${RABBITMQ_VHOST}"
     # Telemetry settings
     ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
     # ...your customizations go here
