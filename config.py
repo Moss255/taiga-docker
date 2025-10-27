@@ -26,15 +26,17 @@ DATABASES["default"]["OPTIONS"] = { "sslmode": "require" }
 
 #######################################################################
 
-# Celery/RabbitMQ settings
-#
-BROKER_URL = "amqp://{user}:{password}@{hostname}:{port}/{vhost}".format(
+# RabbitMQ settings for Celery and Events
+# Using CELERY_BROKER_URL is the modern approach and avoids startup race conditions.
+CELERY_BROKER_URL = "amqp://{user}:{password}@{hostname}:{port}/{vhost}".format(
     user=os.getenv("RABBITMQ_USER", "taiga"),
     password=os.getenv("RABBITMQ_PASS", "taiga"),
     hostname=os.getenv("RABBITMQ_HOST", "taiga-rabbitmq"),
     port=os.getenv("RABBITMQ_PORT", 5672),
     vhost=os.getenv("RABBITMQ_VHOST", "taiga"),
 )
+EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend"
+EVENTS_PUSH_BACKEND_URL = CELERY_BROKER_URL
 
 #######################################################################
 # Logging configuration
