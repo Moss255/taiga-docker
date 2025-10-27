@@ -23,6 +23,8 @@ x-environment:
     EMAIL_PORT: "${EMAIL_PORT}"
     EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
     EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
+    # Prevent RABBITMQ_HOST from leaking into taiga-back/async when using config.py
+    RABBITMQ_HOST: ""
     # Telemetry settings
     ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
     # ...your customizations go here
