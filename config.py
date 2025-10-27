@@ -36,8 +36,8 @@ CELERY_BROKER_URL = "amqp://{user}:{password}@{hostname}:{port}/{vhost}".format(
     vhost=os.getenv("RABBITMQ_VHOST", "taiga"),
 )
 
-EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend" # default
-EVENTS = {
+EVENTS_PUSH_BACKEND = "taiga.events.backends.rabbitmq.EventsPushBackend"
+EVENTS_PUSH_BACKEND_OPTIONS = {
     "url": CELERY_BROKER_URL,
 }
 
