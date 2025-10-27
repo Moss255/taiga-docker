@@ -23,10 +23,6 @@ x-environment:
     EMAIL_PORT: "${EMAIL_PORT}"
     EMAIL_HOST_USER: "${EMAIL_HOST_USER}"
     EMAIL_HOST_PASSWORD: "${EMAIL_HOST_PASSWORD}"
-    # Rabbitmq settings
-    RABBITMQ_USER: "${RABBITMQ_USER}"
-    RABBITMQ_PASS: "${RABBITMQ_PASS}"
-    RABBITMQ_HOST: "taiga-rabbitmq"
     # Telemetry settings
     ENABLE_TELEMETRY: "${ENABLE_TELEMETRY}"
     # ...your customizations go here
