@@ -42,9 +42,6 @@ services:
     volumes: *default-back-volumes
     networks:
       - taiga
-    depends_on:
-      taiga-rabbitmq:
-        condition: service_started
 
   taiga-async:
     image: taigaio/taiga-back:latest
@@ -78,6 +75,7 @@ services:
     environment:
       RABBITMQ_USER: "${RABBITMQ_USER}"
       RABBITMQ_PASS: "${RABBITMQ_PASS}"
+      RABBITMQ_HOST: "taiga-rabbitmq"
       TAIGA_SECRET_KEY: "${SECRET_KEY}"
     networks:
       - taiga
