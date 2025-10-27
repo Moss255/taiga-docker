@@ -35,3 +35,27 @@ BROKER_URL = "amqp://{user}:{password}@{hostname}:{port}/{vhost}".format(
     port=os.getenv("RABBITMQ_PORT", 5672),
     vhost=os.getenv("RABBITMQ_VHOST", "taiga"),
 )
+
+#######################################################################
+# Logging configuration
+#
+# This setting increases the verbosity of the logs to help with debugging.
+# It will show all messages of DEBUG level and higher in the container logs.
+#######################################################################
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(message)s"
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {"handlers": ["console"], "level": "DEBUG"},
+}
