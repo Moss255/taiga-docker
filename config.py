@@ -21,6 +21,7 @@ MEDIA_URL = "{scheme}://{domain}/media/".format(scheme=TAIGA_SITES_SCHEME, domai
 DATABASES["default"]["HOST"] = os.getenv("POSTGRES_HOST")
 DATABASES["default"]["USER"] = os.getenv("POSTGRES_USER")
 DATABASES["default"]["PASSWORD"] = os.getenv("POSTGRES_PASSWORD")
+DATABASES["default"]["PORT"] = os.getenv("POSTGRES_PORT", "5432")
 DATABASES["default"]["OPTIONS"] = { "sslmode": "require" }
 
 #######################################################################
